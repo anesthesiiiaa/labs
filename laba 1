@@ -1,32 +1,68 @@
-from abc import ABC, abstractmethod
+class Animal:
+    def __init__(self, name, food):
+        self.__name = name   # Приватний атрибут
+        self.__food = food   # Приватний атрибут
 
-class Animal(ABC):
-    def __init__(self, name):
-        self.name = name
-
-    @abstractmethod
     def make_sound(self):
-       
-        pass
+        raise NotImplementedError("Похідні класи повинні реалізувати make_sound")
 
     def describe(self):
-        
-        print(f"This is {self.name}.")
+        return f"This is a {self.__class__.__name__} named {self.__name}."
+
+    def eating(self):
+        return f"The {self.__class__.__name__} named {self.__name} likes eating {self.__food}."
+
+    # Геттери
+    def get_name(self):
+        return self.__name
+
+    def get_food(self):
+        return self.__food
+
+    # Сеттери
+    def set_name(self, new_name):
+        self.__name = new_name
+
+    def set_food(self, new_food):
+        self.__food = new_food
+
 
 class Dog(Animal):
     def make_sound(self):
-        print("Woof!")
+        return "Woof!"
+
 
 class Cat(Animal):
     def make_sound(self):
-        print("Meow!")
+        return "Meow!"
+
 
 class Cow(Animal):
     def make_sound(self):
-        print("Moo!")
+        return "Moo!"
 
-animals = [Dog("Buddy"), Cat("Whiskers"), Cow("Bessie")]
 
+# Створення списку тварин
+animals = [
+    Dog("Buddy", "bone"),
+    Cat("Murchyk", "fish"),
+    Cow("Bessie", "grass")
+]
+
+# Виведення інформації
 for animal in animals:
-    animal.describe()
-    animal.make_sound()
+    print(animal.describe())
+    print(animal.make_sound())
+    print(animal.eating())
+    print()
+
+# Взаємодія з атрибутами через сеттери
+print("Changing dog's name to Max...")
+animals[0].set_name("Max")
+print(animals[0].describe())
+
+print()
+print("Changing cat's food to milk...")
+animals[1].set_food("milk")
+print(animals[1].eating())
+

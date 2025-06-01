@@ -12,14 +12,14 @@ class Animal:
     def eating(self):
         return f"The {self.__class__.__name__} named {self.__name} likes eating {self.__food}."
 
-    # Геттери
+
     def get_name(self):
         return self.__name
 
     def get_food(self):
         return self.__food
 
-    # Сеттери
+    
     def set_name(self, new_name):
         self.__name = new_name
 
@@ -42,14 +42,14 @@ class Cow(Animal):
         return "Moo!"
 
 
-# Створення списку тварин
+
 animals = [
     Dog("Buddy", "bone"),
     Cat("Murchyk", "fish"),
     Cow("Bessie", "grass")
 ]
 
-# Виведення інформації
+
 for animal in animals:
     print(animal.describe())
     print(animal.make_sound())
